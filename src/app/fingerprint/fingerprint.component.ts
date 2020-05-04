@@ -11,21 +11,29 @@ export class FingerprintComponent implements OnInit {
   constructor(private data: DataService) {
 
   }
-  hash = {};
+  options = {};
+  murmur = {key: 'hash', value: ''};
   ngOnInit(): void {
     setTimeout(() => {
-      Fingerprint2.get((result, components) => {
-        this.hash = result;
-        console.log(result);
-        this.data.addHash(result)
-        // console.log(components); // an array of components: {key: ..., value: ...}
-        let info = {
-          fingerprint: result
-        };
-
-        // this.processFingerprint(info);
-
+      Fingerprint2.get(this.options, (components) => {
+        let values = components.map(function (component) { return component.value })
+        this.murmur.value = Fingerprint2.x64hash128(values.join(''), 31)
+        components.push(this.murmur);
+        console.log(this.murmur);
+        // console.log(result);
+        console.log(components);
+        this.data.addHash(components);
+        // let info = {
+        //   fingerprint: result
+        // };
+      //
+      //   // this.processFingerprint(info);
       })
+      // Fingerprint2.get(this.options, function (components) {
+      //   let values = components.map(function (component) { return component.value })
+      //   let murmur = Fingerprint2.x64hash128(values.join(''), 31)
+      //   console.log(murmur);
+      // })
     }, 500)
   }
   // processFingerprint(data) {
