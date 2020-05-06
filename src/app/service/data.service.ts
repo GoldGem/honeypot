@@ -14,13 +14,13 @@ export class DataService {
       text: [],
       hash: undefined
   };
-  addGeo (geo) {
+  addGeo(geo) {
     this.data.geo.push(geo);
   }
-  addText (text) {
+  addText(text) {
     this.data.text.push(text);
   }
-  addHash (hash) {
+  addHash(hash) {
     this.data.hash = hash;
   }
 
