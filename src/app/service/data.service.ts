@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
+const baseUrl = 'http://localhost:8080/api/';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   data = {
       geo: [],
@@ -22,5 +24,7 @@ export class DataService {
     this.data.hash = hash;
   }
 
-
+  postData (data) {
+    return this.http.post(baseUrl, data);
+  }
 }

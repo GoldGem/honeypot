@@ -6,6 +6,7 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { GeoComponent } from './geo/geo.component';
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     AppRoutingModule,
+    HttpClientModule,
     BrowserModule,
     WebSpeechModule,
     FormsModule,

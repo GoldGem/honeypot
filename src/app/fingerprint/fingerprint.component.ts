@@ -22,7 +22,7 @@ export class FingerprintComponent implements OnInit {
         console.log(this.murmur);
         // console.log(result);
         console.log(components);
-        this.data.addHash(components);
+        this.data.addHash(this.murmur);
         // let info = {
         //   fingerprint: result
         // };
