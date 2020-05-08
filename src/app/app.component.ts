@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { MessagingService } from './service/messaging.service';
 import {Metrika} from 'ng-yandex-metrika';
 import {NavigationEnd, Router} from '@angular/router';
 import { Location} from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { DataService } from "./service/data.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
   title = 'honeypot';
   message;
 
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit{
     private metrika: Metrika,
     private router: Router,
     public location: Location,
+    private data: DataService
   ) {
     this.prevPath = this.location.path();
     this.router
@@ -46,6 +48,13 @@ export class AppComponent implements OnInit{
       }
     });
 
+  }
 
+  ngOnDestroy() {
+    // this.data.postData(this.data);
+  }
+
+  onClick() {
+    this.data.postData(this.data);
   }
 }

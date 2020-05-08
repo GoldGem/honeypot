@@ -58,6 +58,7 @@ export class SpeechRecognizerService {
         // observer.next({
         //   info: 'info_start'
         // });
+
         this.recognition.start();
       };
     });
