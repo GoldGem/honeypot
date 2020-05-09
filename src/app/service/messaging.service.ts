@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { BehaviorSubject } from 'rxjs';
-import {Metrika} from "ng-yandex-metrika";
+import { Metrika } from "ng-yandex-metrika";
+import { DataService } from "./data.service";
 
 
 @Injectable()
@@ -12,7 +13,13 @@ export class MessagingService {
 
 
 
-  constructor(private metrika: Metrika, private angularFireMessaging: AngularFireMessaging) {
+  constructor
+  (
+    private metrika: Metrika,
+    private angularFireMessaging: AngularFireMessaging,
+    private data: DataService
+  )
+  {
     this.angularFireMessaging.messaging.subscribe(
       (_messaging) => {
         _messaging.onMessage = _messaging.onMessage.bind(_messaging);
@@ -24,7 +31,9 @@ export class MessagingService {
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
+        this.data.addToken(token);
         this.token.next(token);
+
       },
       (err) => {
         console.error('Unable to get permission to notify.', err);

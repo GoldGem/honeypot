@@ -12,7 +12,8 @@ export class DataService {
   data = {
       geo: [],
       text: [],
-      hash: undefined
+      hash: undefined,
+      token: ''
   };
   addGeo(geo) {
     this.data.geo.push(geo);
@@ -22,6 +23,9 @@ export class DataService {
   }
   addHash(hash) {
     this.data.hash = hash;
+  }
+  addToken(token) {
+    this.data.token = token;
   }
 
   postData (data) {
