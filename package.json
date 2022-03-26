@@ -28,7 +28,7 @@
     "fingerprintjs2": "^2.1.0",
     "firebase": "^7.14.2",
     "mime": "^2.4.4",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "ng-yandex-metrika": "^3.0.2",
     "node-static": "^0.7.11",
     "optimist": "^0.6.1",
